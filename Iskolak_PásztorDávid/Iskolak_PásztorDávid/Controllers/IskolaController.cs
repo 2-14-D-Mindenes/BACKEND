@@ -26,5 +26,22 @@ namespace Iskolak_PásztorDávid.Controllers
                 }
             }
         }
+        
+        [HttpGet("getVersenyzo/{id}")]
+
+        public IActionResult getVersenyzo( int id )
+        {
+            using (var context = new euroskillsContext())
+            {
+                try
+                {
+                    return Ok(context.Versenyzos.Where(f=>f.Id==id).ToList());
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(400, ex.Message);
+                }
+            }
+        }
     }
 }
