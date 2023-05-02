@@ -10,7 +10,7 @@ namespace Iskolak_PásztorDávid.Controllers
     [ApiController]
     public class IskolaController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("Get")]
 
         public IActionResult Get()
         {
