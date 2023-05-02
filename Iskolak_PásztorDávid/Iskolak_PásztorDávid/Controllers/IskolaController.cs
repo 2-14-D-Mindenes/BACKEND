@@ -43,5 +43,32 @@ namespace Iskolak_PásztorDávid.Controllers
                 }
             }
         }
+        
+        [HttpPost("addVersenyzo/{UserID}")]
+
+        public IActionResult addVersenyzo( string UserID, Versenyzo versenyzo)
+        {
+            using (var context = new euroskillsContext())
+            {
+                try
+                {
+                    if (UserID==Program.UID)
+                    {
+                        context.Versenyzos.Add(versenyzo);
+                        context.SaveChanges();
+                        return StatusCode(200, "Versenyző hozzáadása sikeresen megtörtént!");
+                    }
+                    else
+                    {
+                        return StatusCode(404, "Helytelen azonosító!");
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(400, ex.Message);
+                }
+            }
+        }
     }
 }
